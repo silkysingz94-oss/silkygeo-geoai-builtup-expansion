@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b46">
+<title>GBoS GEOAI | Soil Health & Land Degradation</title>
+<style>
+:root{--navy:#102b46;--blue:#1769aa;--green:#168b45;--red:#d9272e;--muted:#64748b;--line:#dce5ec;--paper:#f3f6f9}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:#182b3b;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:var(--navy);color:white;border-bottom:5px solid var(--green);padding:22px clamp(18px,4vw,54px)}
+.brand{display:flex;align-items:center;gap:15px}.flag{width:54px;height:34px;flex:none;border:1px solid #ffffff66;background:linear-gradient(to bottom,#d9272e 0 30%,white 30% 37%,#168b45 37% 63%,white 63% 70%,#2464a4 70% 100%)}
+h1{font-size:clamp(21px,3vw,32px);line-height:1.15;margin:0}.subtitle{color:#d7e4ef;margin:7px 0 0;font-size:14px}
+main{max-width:1240px;margin:0 auto;padding:28px 18px 44px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:20px;align-items:stretch}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:clamp(20px,3vw,32px);box-shadow:0 5px 22px #102b4609}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800;color:var(--green)}
+h2{font-size:clamp(23px,3vw,34px);line-height:1.2;color:var(--navy);margin:8px 0 13px}h3{margin:0 0 9px;color:var(--navy);font-size:17px}
+p{margin:8px 0;color:#405366}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+a.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:750;border-radius:8px;padding:11px 15px;border:1px solid var(--blue);background:var(--blue);color:#fff}
+a.btn.secondary{background:#fff;color:var(--navy);border-color:#cbd7e2}.state{border:1px solid #f0d79c;background:#fff8e8;color:#80590a;border-radius:10px;padding:13px 14px;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px}.kpi strong{display:block;color:var(--navy);font-size:15px}.kpi span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}.list{padding-left:19px;margin:9px 0;color:#405366}.list li{margin:7px 0}.notice{margin-top:18px;background:#edf7f1;border:1px solid #cbe8d5;border-radius:12px;padding:16px;color:#245d3a}
+footer{background:#fff;border-top:1px solid var(--line);padding:20px;text-align:center;color:var(--muted);font-size:12px}
+#appFrame{width:100%;height:72vh;min-height:540px;border:1px solid var(--line);border-radius:12px;background:white}#liveSection[hidden]{display:none}
+code{background:#eef2f6;padding:2px 5px;border-radius:4px;font-size:.92em}
+@media(max-width:780px){.hero,.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}.brand{align-items:flex-start}#appFrame{height:70vh;min-height:450px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="flag" role="img" aria-label="Flag of The Gambia"></div><div><h1>GBoS GEOAI</h1><p class="subtitle">The Gambia Soil Health &amp; Land Degradation Intelligence</p></div></div></header>
+<main>
+<section class="hero">
+ <div class="card">
+  <div class="eyebrow">Geospatial research prototype · 2026</div>
+  <h2>Soil health, land degradation and environmental indicators</h2>
+  <p>An Earth Engine research dashboard designed to explore satellite-derived environmental indicators across The Gambia. The Code Editor script combines Sentinel-2, Sentinel-1, CHIRPS rainfall and terrain information to screen spatial patterns.</p>
+  <p>Indicators include a soil-health proxy, land-degradation proxy, erosion-risk screening, vegetation indices, moisture-related indices, rainfall and radar response. These are remote-sensing proxies, not field-validated soil measurements.</p>
+  <div class="actions"><a class="btn" id="openApp" href="https://code.earthengine.google.com/" target="_blank" rel="noopener">Open Earth Engine</a><a class="btn secondary" href="../gee/Gambia_Soil_Health_Land_Degradation.js">View GEE source</a><a class="btn secondary" href="README.md">Setup guide</a></div>
+ </div>
+ <aside class="card">
+  <div class="eyebrow">Publication status</div><h3>Live app connection</h3>
+  <div id="appState" class="state">The public Earth Engine App URL has not been configured yet. Publish the script from the Earth Engine Code Editor, then add its URL to <code>app-config.js</code>.</div>
+  <p style="font-size:13px">GitHub Pages hosts this project page. Earth Engine performs the live geospatial computation through a separately published Earth Engine App.</p>
+ </aside>
+</section>
+<div class="kpis">
+ <div class="kpi"><strong>Sentinel-2</strong><span>Optical vegetation and bare-soil spectral proxies</span></div>
+ <div class="kpi"><strong>Sentinel-1</strong><span>SAR backscatter response and moisture-related proxy</span></div>
+ <div class="kpi"><strong>CHIRPS + SRTM</strong><span>Rainfall context and terrain-based screening</span></div>
+</div>
+<section id="liveSection" hidden style="margin-top:18px"><div class="card"><h3>Live Earth Engine dashboard</h3><p>Interactive analysis is served by the published Earth Engine App.</p><iframe id="appFrame" title="GBoS GEOAI live Earth Engine dashboard" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></section>
+<div class="grid">
+ <section class="card"><h3>Workflow</h3><ol class="list"><li>Open the preserved JavaScript source in the Earth Engine Code Editor.</li><li>Run and validate the analysis, selectors, chart, legend, map layers and exports.</li><li>Publish a public Earth Engine App from the Code Editor Apps panel.</li><li>Set the published app URL in <code>app-config.js</code> and enable GitHub Pages for this repository.</li></ol></section>
+ <section class="card"><h3>Interpretation and limitations</h3><ul class="list"><li>Indicators are screening proxies and should not be presented as laboratory-measured soil properties.</li><li>Season, cloud cover, sensor availability, spatial resolution and masking affect the results.</li><li>Validate outputs against field observations and local expert knowledge before operational decisions.</li><li>Public Apps can expose their source and asset identifiers; do not publish private or sensitive information.</li></ul></section>
+</div>
+<div class="notice"><strong>Data access requirement:</strong> The script references the Earth Engine asset <code>projects/ee-aishaansu80/assets/GambiaEA_Final1</code>. Before publication, confirm that the published App can read this asset. Share it only as permitted by its data owner and applicable GBoS data-sharing rules.</div>
+</main>
+<footer>Produced by Ansu Singhateh · GIS Analyst | GIS / Cartography Unit | GBoS<br>GBoS GEOAI • Research and educational use</footer>
+<script src="app-config.js"></script>
+<script>
+(function(){
+ const url=(window.GEE_APP_URL||"").trim();
+ const state=document.getElementById("appState"),open=document.getElementById("openApp"),section=document.getElementById("liveSection"),frame=document.getElementById("appFrame");
+ if(url && /^https:\/\//i.test(url) && !url.includes("PASTE_PUBLISHED_APP_URL_HERE")){
+   open.href=url;open.textContent="Launch live dashboard";section.hidden=false;frame.src=url;
+   state.textContent="A published Earth Engine App URL is configured. If the embedded view is blocked by browser policy, use Launch live dashboard.";
+   state.style.background="#edf7f1";state.style.borderColor="#cbe8d5";state.style.color="#245d3a";
+ } else {
+   open.href="https://code.earthengine.google.com/";open.textContent="Open Earth Engine Code Editor";
+ }
+})();
+</script>
+</body>
+</html>
